@@ -105,6 +105,10 @@ NOTE: For more information about Snyk Code, refer to the link:https://docs.snyk.
 | String
 | The number of *Low* severity issues discovered during the scan.
 
+| `policy-subject`
+| JSON
+| A JSON value containing details about the vulnerability scan summary and details.
+
 |===
 
 == Usage examples
@@ -294,6 +298,7 @@ jobs:
             echo "High count: ${{steps.snyk-code-step.outputs.high-count}}"
             echo "Medium count: ${{steps.snyk-code-step.outputs.medium-count}}"
             echo "Low count: ${{steps.snyk-code-step.outputs.low-count}}"
+            echo "Policy subject: ${{steps.snyk-code-step.outputs.policy-subject}}"
 
 
 ----
@@ -325,6 +330,7 @@ jobs:
       snyk-code-job-output-high: ${{ steps.snyk-code-step.outputs.high-count }}
       snyk-code-job-output-medium: ${{ steps.snyk-code-step.outputs.medium-count }}
       snyk-code-job-output-low: ${{ steps.snyk-code-step.outputs.low-count }}
+      snyk-code-job-output-policy-subject: ${{ steps.snyk-code-step.outputs.policy-subject }}
     steps:
       - name: check out source code
         uses: cloudbees-io/checkout@v1
@@ -355,6 +361,7 @@ jobs:
           echo "High count: ${{ needs.job1.outputs.snyk-code-job-output-high }}"
           echo "Medium count: ${{ needs.job1.outputs.snyk-code-job-output-medium }}"
           echo "Low count: ${{ needs.job1.outputs.snyk-code-job-output-low }}"
+          echo "Policy subject: ${{ needs.job1.outputs.snyk-code-job-output-policy-subject }}"
 
 ----
 
