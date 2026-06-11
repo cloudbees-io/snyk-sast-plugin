@@ -83,7 +83,7 @@ runs:
       run: /app/plugin-snyk-sast-scanner -mode single
 
     - name: Complete execution plan
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:eda1f86aa17218e8779fae9ff1ac9161b708d07e
+      uses: docker://020229604682.dkr.ecr.us-east-1.amazonaws.com/actions/assets-plugin-chain-utils:65ef2f87f5690a35773f7d73f3ee9d2fdf0933b1
       id: process-outputs
       with:
         entrypoint: assets-plugin-chain-utils
