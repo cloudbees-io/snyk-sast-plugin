@@ -39,6 +39,18 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Clear asset store for scan
+      uses: docker://alpine:latest
+      shell: sh
+      run: |
+        if [ -d "$CLOUDBEES_WORKSPACE/store" ]; then
+          find $CLOUDBEES_WORKSPACE/store -mindepth 2 -maxdepth 2 \
+            -type d ! -name "discovered-profile-findings" \
+            -exec rm -rf {} +
+          rm -rf $CLOUDBEES_WORKSPACE/store/binary-assets
+          rm -rf $CLOUDBEES_WORKSPACE/store/request
+        fi
+
     - name: Generate sha and ref
       uses: docker://public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:8ffcff74b5e47eb284c2b137a00b839db558fde1
       with:
